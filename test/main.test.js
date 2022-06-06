@@ -1,7 +1,7 @@
 // const wait = require('../wait');
-// const process = require('process');
-// const cp = require('child_process');
-// const path = require('path');
+import process from "process";
+import cp from "child_process";
+import path from "path";
 
 // test('throws invalid number', async () => {
 //   await expect(wait('foo')).rejects.toThrow('milliseconds not a number');
@@ -16,13 +16,17 @@
 // });
 
 // // shows how the runner will run a javascript action with env / stdout protocol
-// test('test runs', () => {
-//   process.env['INPUT_MILLISECONDS'] = 100;
-//   const ip = path.join(__dirname, 'index.js');
-//   const result = cp.execSync(`node ${ip}`, {env: process.env}).toString();
-//   console.log(result);
-// })
+test("test runs", () => {
+
+    process.env["GITHUB_WORKSPACE"] = __dirname;
+    process.env["INPUT_REPOSITORY"] = "thiagodonferreira/configuration-file-releaser";
+
+    const ip = path.join(__dirname, "../src/main.js");
+    // console.log(ip);
+    const result = cp.execSync(`node ${ip}`, { env: process.env }).toString();
+    console.log(result);
+});
 
 test("wait 500 ms", async () => {
-      expect(1).toBe(1);
+    expect(1).toBe(1);
 });

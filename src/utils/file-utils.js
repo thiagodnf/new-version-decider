@@ -1,4 +1,5 @@
-import fs from "fs";
+// import fs from "fs";
+const fs  = require("fs");
 // const path  = require("path");
 
 class FileUtils {
@@ -28,4 +29,4 @@ class FileUtils {
     }
 }
 
-export default FileUtils;
+exports.FileUtils = FileUtils;

@@ -1,7 +1,9 @@
 const core = require("@actions/core");
-import {Octokit} from "@octokit/rest";
+const { Octokit } = require("@octokit/rest");
+const { FileUtils } = require("./utils/file-utils");
 
-import FileUtils from "./utils/file-utils";
+// import FileUtils from "./utils/file-utils";
+// const FileUtils
 
 // most @actions toolkit packages have async methods
 async function run() {
