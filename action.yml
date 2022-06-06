@@ -1,13 +1,17 @@
-name: 'configuration-file-releaser'
-description: 'A Github action for releasing a new version using configuration files from your project'
+name: configuration-file-releaser
+description: A Github action for releasing a new version using configuration files from your project
+branding:
+  icon: anchor
+  color: orange
 inputs:
-  milliseconds:  # id of input
-    description: 'number of milliseconds to wait'
+  repository:
+    description: The repository name in full
     required: true
-    default: '1000'
 outputs:
-  time: # output will be available to future steps
-    description: 'The current time after waiting'
+  id:
+    description: Latest release ID
+  release:
+    description: Latest release name
 runs:
-  using: 'node16'
-  main: 'dist/index.js'
+  using: "node16"
+  main: "dist/index.js"
