@@ -7,7 +7,7 @@ class FileUtils {
 
     static getWorkspacePath() {
 
-        return process.env["GITHUB_WORKSPACE"] || "";
+        return process.env["GITHUB_WORKSPACE"];
     }
 
     static exists(fileOrPath) {
