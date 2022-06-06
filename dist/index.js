@@ -8800,6 +8800,8 @@ const core = __nccwpck_require__(2186);
 // most @actions toolkit packages have async methods
 async function run() {
 
+    const octokit = new dist_node/* Octokit */.v();
+
     try {
 
         if (file_utils.isWorkspaceEmpty()) {
@@ -8814,7 +8816,7 @@ async function run() {
 
         const [owner, repo] = repository.split("/");
 
-        let releases = await dist_node/* Octokit.repos.listReleases */.v.repos.listReleases({
+        let releases = await octokit.rest.repos.listReleases({
             owner: owner,
             repo: repo,
         });

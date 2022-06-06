@@ -6,6 +6,8 @@ import FileUtils from "./utils/file-utils";
 // most @actions toolkit packages have async methods
 async function run() {
 
+    const octokit = new Octokit();
+
     try {
 
         if (FileUtils.isWorkspaceEmpty()) {
@@ -20,7 +22,7 @@ async function run() {
 
         const [owner, repo] = repository.split("/");
 
-        let releases = await Octokit.repos.listReleases({
+        let releases = await octokit.rest.repos.listReleases({
             owner: owner,
             repo: repo,
         });
