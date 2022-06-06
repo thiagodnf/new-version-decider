@@ -31,7 +31,8 @@
     "dependencies": {
         "@actions/core": "1.8.2",
         "@actions/github": "5.0.3",
-        "@octokit/rest": "18.12.0"
+        "@octokit/rest": "18.12.0",
+        "pom-parser": "1.2.0"
     },
     "devDependencies": {
         "@babel/preset-env": "7.18.0",

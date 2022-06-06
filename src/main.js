@@ -1,7 +1,9 @@
 const core = require("@actions/core");
 const { Octokit } = require("@octokit/rest");
-const { NodeJSLoader } = require("./loader/nodejs-loader");
 const { FileUtils } = require("./utils/file-utils");
+
+const { NodeJSLoader } = require("./loader/nodejs-loader");
+const { JavaMavenLoader } = require("./loader/java-maven-loader");
 
 // most @actions toolkit packages have async methods
 async function run() {
@@ -9,7 +11,8 @@ async function run() {
     const octokit = new Octokit();
 
     const loaders = {
-        "nodejs": new NodeJSLoader()
+        "nodejs": new NodeJSLoader(),
+        "java-maven": new JavaMavenLoader()
     };
 
     try {
@@ -43,21 +46,16 @@ async function run() {
             repo: repo,
         });
 
-
         releases = releases.data;
 
         let { id, currentRelease } = "";
 
-        const nextRelease = loader.getCurrentVersion(configurationFile);
+        const nextRelease = await loader.getCurrentVersion(configurationFile);
 
         if (releases.length) {
             id = String(releases[0].id);
             currentRelease = releases[0].name;
         }
-
-        core.info(id);
-        core.info(currentRelease);
-        core.info(nextRelease);
 
         core.setOutput("id", id);
         core.setOutput("currentRelease", currentRelease);

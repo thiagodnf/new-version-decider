@@ -8539,6 +8539,34 @@ function wrappy (fn, cb) {
 
 /***/ }),
 
+/***/ 9248:
+/***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
+
+const { FileUtils } = __nccwpck_require__(550);
+
+class JavaMavenLoader {
+
+    getCurrentVersion(file) {
+
+        file = file || "package.json";
+
+        const content = FileUtils.getContent(file);
+
+        const json = JSON.parse(content);
+
+        if (!json.version) {
+            throw new Error("`version` was not found at " + file);
+        }
+
+        return json.version;
+    }
+}
+
+exports.JavaMavenLoader = JavaMavenLoader;
+
+
+/***/ }),
+
 /***/ 3869:
 /***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
 
@@ -8784,8 +8812,10 @@ var __webpack_exports__ = {};
 (() => {
 const core = __nccwpck_require__(2186);
 const { Octokit } = __nccwpck_require__(5375);
-const { NodeJSLoader } = __nccwpck_require__(3869);
 const { FileUtils } = __nccwpck_require__(550);
+
+const { NodeJSLoader } = __nccwpck_require__(3869);
+const { JavaMavenLoader } = __nccwpck_require__(9248);
 
 // most @actions toolkit packages have async methods
 async function run() {
@@ -8793,7 +8823,8 @@ async function run() {
     const octokit = new Octokit();
 
     const loaders = {
-        "nodejs": new NodeJSLoader()
+        "nodejs": new NodeJSLoader(),
+        "java-maven": new JavaMavenLoader()
     };
 
     try {
@@ -8827,7 +8858,6 @@ async function run() {
             repo: repo,
         });
 
-
         releases = releases.data;
 
         let { id, currentRelease } = "";
@@ -8838,10 +8868,6 @@ async function run() {
             id = String(releases[0].id);
             currentRelease = releases[0].name;
         }
-
-        core.info(id);
-        core.info(currentRelease);
-        core.info(nextRelease);
 
         core.setOutput("id", id);
         core.setOutput("currentRelease", currentRelease);

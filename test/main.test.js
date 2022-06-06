@@ -20,10 +20,9 @@ test("test runs", () => {
 
     process.env["GITHUB_WORKSPACE"] = "./";
     process.env["INPUT_REPOSITORY"] = "thiagodonferreira/configuration-file-releaser";
-    process.env["INPUT_LOADER"] = "nodejs";
+    process.env["INPUT_LOADER"] = "java-maven";
 
     const ip = path.join(__dirname, "../src/main.js");
-
 
     try {
         const result = cp.execSync(`node ${ip}`, { env: process.env }).toString();
