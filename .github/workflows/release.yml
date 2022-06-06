@@ -30,6 +30,6 @@ jobs:
         with:
           name: ${{ steps.releaser.outputs.nextRelease }}
           tag_name: v${{steps.releaser.outputs.nextRelease}}
-          files: "*"
+          # files: "*"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
