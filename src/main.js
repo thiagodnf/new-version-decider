@@ -1,11 +1,17 @@
 const core = require('@actions/core');
 const wait = require('./wait');
 
+const { FileUtils } = require('./utils/file-utils');
 
 // most @actions toolkit packages have async methods
 async function run() {
 
     try {
+
+        if (FileUtils.isWorkspaceEmpty()) {
+            throw new Error("Workspace is empty. Did you forget to run \"actions/checkout\" before running this Github Action?");
+        }
+
         const ms = core.getInput('milliseconds');
         core.info(`Waiting ${ms} milliseconds ...`);
 

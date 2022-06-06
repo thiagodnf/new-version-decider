@@ -2,7 +2,9 @@
     "name": "configuration-file-releaser",
     "version": "0.0.1",
     "description": "A Github action for releasing a new version using configuration files from your project",
-    "main": "index.js",
+    "author": "Thiago do N. Ferreira",
+    "license": "MIT",
+    "main": "src/main.js",
     "scripts": {
         "dev": "nodemon --ignore dist/ --exec npm run all",
         "lint": "eslint .",
@@ -19,8 +21,9 @@
         "Actions",
         "JavaScript"
     ],
-    "author": "",
-    "license": "MIT",
+    "engines": {
+        "node": ">=16.15.0"
+    },
     "bugs": {
         "url": "https://github.com/thiagodonferreira/configuration-file-releaser/issues"
     },
