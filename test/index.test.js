@@ -22,3 +22,7 @@
 //   const result = cp.execSync(`node ${ip}`, {env: process.env}).toString();
 //   console.log(result);
 // })
+
+test("wait 500 ms", async () => {
+      expect(1).toBe(1);
+});

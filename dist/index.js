@@ -1955,6 +1955,9 @@ __nccwpck_require__.r(__webpack_exports__);
 /* harmony export */ __nccwpck_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+const fs = __nccwpck_require__(147);
+// const path  = require("path");
+
 class FileUtils {
 
     static isWorkspaceEmpty() {
@@ -1983,14 +1986,6 @@ class FileUtils {
 }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (FileUtils);
-
-
-/***/ }),
-
-/***/ 653:
-/***/ ((module) => {
-
-module.exports = eval("require")("./wait");
 
 
 /***/ }),
@@ -2145,7 +2140,7 @@ var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
 (() => {
 const core = __nccwpck_require__(186);
-const wait = __nccwpck_require__(653);
+// const wait = require("./wait");
 
 const { FileUtils } = __nccwpck_require__(550);
 
@@ -2158,14 +2153,14 @@ async function run() {
             throw new Error("Workspace is empty. Did you forget to run \"actions/checkout\" before running this Github Action?");
         }
 
-        const ms = core.getInput('milliseconds');
+        const ms = core.getInput("milliseconds");
         core.info(`Waiting ${ms} milliseconds ...`);
 
         core.debug((new Date()).toTimeString()); // debug is only output if you set the secret `ACTIONS_RUNNER_DEBUG` to true
-        await wait(parseInt(ms));
+        // await wait(parseInt(ms));
         core.info((new Date()).toTimeString());
 
-        core.setOutput('time', new Date().toTimeString());
+        core.setOutput("time", new Date().toTimeString());
     } catch (error) {
         core.setFailed(error.message);
     }
