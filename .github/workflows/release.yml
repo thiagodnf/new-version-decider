@@ -17,6 +17,8 @@ jobs:
         uses: thiagodonferreira/configuration-file-releaser@main
         with:
           repository: thiagodonferreira/configuration-file-releaser
+          loader: nodejs
+          configurationFile: package.json
 
       - run: echo ${{steps.releaser.outputs.currentRelease}}
 
