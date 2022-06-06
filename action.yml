@@ -10,8 +10,10 @@ inputs:
 outputs:
   id:
     description: Latest release ID
-  release:
+  currentRelease:
     description: Latest release name
+  nextRelease:
+    description: Next release name
 runs:
   using: "node16"
   main: "dist/index.js"

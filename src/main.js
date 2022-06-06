@@ -31,12 +31,24 @@ async function run() {
 
         releases = releases.data;
 
+        let { id, currentRelease, nextRelease } = "";
+
         if (releases.length) {
-            core.setOutput("id", String(releases[0].id));
-            core.setOutput("release", releases[0].tag_name);
+            id = String(releases[0].id);
+            currentRelease = releases[0].tag_name;
+            nextRelease = "0.0.1";
+        } else {
+            nextRelease = "0.0.1";
         }
 
-        throw new Error("No valid releases. Did you manually created a release on GitHub?");
+
+        core.info(id);
+        core.info(currentRelease);
+        core.info(nextRelease);
+
+        core.setOutput("id", id);
+        core.setOutput("currentRelease", currentRelease);
+        core.setOutput("nextRelease", nextRelease);
 
     } catch (error) {
         core.setFailed(error.message);
