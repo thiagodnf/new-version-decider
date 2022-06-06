@@ -8823,17 +8823,13 @@ async function run() {
 
         releases = releases.data;
 
-        core.info(releases);
+        if (releases.length) {
+            core.setOutput("id", String(releases[0].id));
+            core.setOutput("release", releases[0].tag_name);
+        }
 
+        throw new Error("No valid releases");
 
-        const ms = core.getInput("milliseconds");
-        core.info(`Waiting ${ms} milliseconds ...`);
-
-        core.debug((new Date()).toTimeString()); // debug is only output if you set the secret `ACTIONS_RUNNER_DEBUG` to true
-        // await wait(parseInt(ms));
-        core.info((new Date()).toTimeString());
-
-        core.setOutput("time", new Date().toTimeString());
     } catch (error) {
         core.setFailed(error.message);
     }
