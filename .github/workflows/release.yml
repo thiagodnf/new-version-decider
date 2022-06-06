@@ -20,10 +20,10 @@ jobs:
 
       - name: Create Release on Github
         uses: softprops/action-gh-release@v1
-        if: ${{steps.releaser.output.currentRelease}} !== ${{steps.releaser.output.nextRelease}}
+        if: ${{steps.releaser.outputs.currentRelease}} !== ${{steps.releaser.outputs.nextRelease}}
         with:
-          name: v${{ steps.releaser.output.nextRelease }}
-          tag_name: v${{steps.releaser.output.nextRelease}}
+          name: ${{ steps.releaser.outputs.nextRelease }}
+          tag_name: v${{steps.releaser.outputs.nextRelease}}
           files: "*"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
