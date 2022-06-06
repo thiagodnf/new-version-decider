@@ -1,5 +1,5 @@
 const core = require("@actions/core");
-// const wait = require("./wait");
+import Octokit from "@octokit/rest";
 
 import FileUtils from "./utils/file-utils";
 
@@ -11,6 +11,24 @@ async function run() {
         if (FileUtils.isWorkspaceEmpty()) {
             throw new Error("Workspace is empty. Did you forget to run \"actions/checkout\" before running this Github Action?");
         }
+
+        const repository = core.getInput("repository");
+
+        if (!repository) {
+            throw new Error("The 'repository' parameter should not be blank");
+        }
+
+        const [owner, repo] = repository.split("/");
+
+        let releases = await Octokit.repos.listReleases({
+            owner: owner,
+            repo: repo,
+        });
+
+        releases = releases.data;
+
+        core.info(releases);
+
 
         const ms = core.getInput("milliseconds");
         core.info(`Waiting ${ms} milliseconds ...`);
