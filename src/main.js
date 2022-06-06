@@ -1,5 +1,6 @@
 const core = require("@actions/core");
 const { Octokit } = require("@octokit/rest");
+const { NodeJSLoader } = require("./loader/nodejs-loader");
 const { FileUtils } = require("./utils/file-utils");
 
 // most @actions toolkit packages have async methods
@@ -7,17 +8,33 @@ async function run() {
 
     const octokit = new Octokit();
 
+    const loaders = {
+        "nodejs": new NodeJSLoader()
+    };
+
     try {
 
         if (FileUtils.isWorkspaceEmpty()) {
             throw new Error("Workspace is empty. Did you forget to run \"actions/checkout\" before running this Github Action?");
         }
 
-        const repository = core.getInput("repository");
+        let repository = core.getInput("repository");
+        let loader = core.getInput("loader");
+        let configurationFile = core.getInput("configurationFile");
 
         if (!repository) {
             throw new Error("The 'repository' parameter should not be blank");
         }
+
+        if (!loader) {
+            throw new Error("The 'loader' parameter should not be blank");
+        }
+
+        if (!loaders[loader]) {
+            throw new Error("The 'loader' parameter is not valid");
+        }
+
+        loader = loaders[loader];
 
         const [owner, repo] = repository.split("/");
 
@@ -28,16 +45,14 @@ async function run() {
 
         releases = releases.data;
 
-        let { id, currentRelease, nextRelease } = "";
+        let { id, currentRelease } = "";
+
+        const nextRelease = loader.getCurrentVersion(configurationFile);
 
         if (releases.length) {
             id = String(releases[0].id);
             currentRelease = releases[0].name;
-            nextRelease = "0.0.2";
-        } else {
-            nextRelease = "0.0.1";
         }
-
 
         core.info(id);
         core.info(currentRelease);

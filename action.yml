@@ -7,6 +7,12 @@ inputs:
   repository:
     description: The repository name in full
     required: true
+  loader:
+    description: The type of the file
+    required: true
+  configurationFile:
+    description: The configuration file
+    required: false
 outputs:
   id:
     description: Latest release ID

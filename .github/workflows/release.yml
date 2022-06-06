@@ -12,7 +12,6 @@ jobs:
       - name: Checking out
         uses: actions/checkout@v3
 
-
       - id: releaser
         name: Configuration File Releaser
         uses: thiagodonferreira/configuration-file-releaser@main

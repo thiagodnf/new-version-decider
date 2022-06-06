@@ -18,13 +18,25 @@ import path from "path";
 // // shows how the runner will run a javascript action with env / stdout protocol
 test("test runs", () => {
 
-    process.env["GITHUB_WORKSPACE"] = __dirname;
+    process.env["GITHUB_WORKSPACE"] = "./";
     process.env["INPUT_REPOSITORY"] = "thiagodonferreira/configuration-file-releaser";
+    process.env["INPUT_LOADER"] = "nodejs";
 
     const ip = path.join(__dirname, "../src/main.js");
-    // console.log(ip);
-    const result = cp.execSync(`node ${ip}`, { env: process.env }).toString();
+
+
+    try {
+        const result = cp.execSync(`node ${ip}`, { env: process.env }).toString();
     console.log(result);
+
+      }
+      catch (err){
+        console.log("output",err);
+        console.log("sdterr",err.stderr.toString());
+        console.log("sdterr",err.stdout.toString());
+      }
+
+
 });
 
 test("wait 500 ms", async () => {

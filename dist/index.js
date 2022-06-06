@@ -8539,12 +8539,40 @@ function wrappy (fn, cb) {
 
 /***/ }),
 
+/***/ 3869:
+/***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
+
+const { FileUtils } = __nccwpck_require__(550);
+
+class NodeJSLoader {
+
+    getCurrentVersion(file) {
+
+        file = file || "package.json";
+
+        const content = FileUtils.getContent(file);
+
+        const json = JSON.parse(content);
+
+        if (!json.version) {
+            throw new Error("`version` was not found at " + file);
+        }
+
+        return json.version;
+    }
+}
+
+exports.NodeJSLoader = NodeJSLoader;
+
+
+/***/ }),
+
 /***/ 550:
 /***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
 
 // import fs from "fs";
 const fs  = __nccwpck_require__(7147);
-// const path  = require("path");
+const path  = __nccwpck_require__(1017);
 
 class FileUtils {
 
@@ -8570,6 +8598,13 @@ class FileUtils {
         }
 
         return fs.readdirSync(path).length === 0;
+    }
+
+    static getContent(file, encoding = "utf-8") {
+
+        const filePath = path.join(FileUtils.getWorkspacePath(), file);
+
+        return fs.readFileSync(filePath, { encoding });
     }
 }
 
@@ -8749,6 +8784,7 @@ var __webpack_exports__ = {};
 (() => {
 const core = __nccwpck_require__(2186);
 const { Octokit } = __nccwpck_require__(5375);
+const { NodeJSLoader } = __nccwpck_require__(3869);
 const { FileUtils } = __nccwpck_require__(550);
 
 // most @actions toolkit packages have async methods
@@ -8756,17 +8792,33 @@ async function run() {
 
     const octokit = new Octokit();
 
+    const loaders = {
+        "nodejs": new NodeJSLoader()
+    };
+
     try {
 
         if (FileUtils.isWorkspaceEmpty()) {
             throw new Error("Workspace is empty. Did you forget to run \"actions/checkout\" before running this Github Action?");
         }
 
-        const repository = core.getInput("repository");
+        let repository = core.getInput("repository");
+        let loader = core.getInput("loader");
+        let configurationFile = core.getInput("configurationFile");
 
         if (!repository) {
             throw new Error("The 'repository' parameter should not be blank");
         }
+
+        if (!loader) {
+            throw new Error("The 'loader' parameter should not be blank");
+        }
+
+        if (!loaders[loader]) {
+            throw new Error("The 'loader' parameter is not valid");
+        }
+
+        loader = loaders[loader];
 
         const [owner, repo] = repository.split("/");
 
@@ -8777,16 +8829,14 @@ async function run() {
 
         releases = releases.data;
 
-        let { id, currentRelease, nextRelease } = "";
+        let { id, currentRelease } = "";
+
+        const nextRelease = loader.getCurrentVersion(configurationFile);
 
         if (releases.length) {
             id = String(releases[0].id);
             currentRelease = releases[0].name;
-            nextRelease = "0.0.2";
-        } else {
-            nextRelease = "0.0.1";
         }
-
 
         core.info(id);
         core.info(currentRelease);

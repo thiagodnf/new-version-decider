@@ -1,6 +1,6 @@
 // import fs from "fs";
 const fs  = require("fs");
-// const path  = require("path");
+const path  = require("path");
 
 class FileUtils {
 
@@ -26,6 +26,13 @@ class FileUtils {
         }
 
         return fs.readdirSync(path).length === 0;
+    }
+
+    static getContent(file, encoding = "utf-8") {
+
+        const filePath = path.join(FileUtils.getWorkspacePath(), file);
+
+        return fs.readFileSync(filePath, { encoding });
     }
 }
 
