@@ -32,7 +32,7 @@ async function run() {
 
         if (releases.length) {
             id = String(releases[0].id);
-            currentRelease = releases[0].tag_name;
+            currentRelease = releases[0].name;
             nextRelease = "0.0.2";
         } else {
             nextRelease = "0.0.1";
