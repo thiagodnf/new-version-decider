@@ -1947,49 +1947,6 @@ exports.debug = debug; // for test
 
 /***/ }),
 
-/***/ 550:
-/***/ ((__unused_webpack_module, __webpack_exports__, __nccwpck_require__) => {
-
-"use strict";
-__nccwpck_require__.r(__webpack_exports__);
-/* harmony export */ __nccwpck_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-const fs = __nccwpck_require__(147);
-// const path  = require("path");
-
-class FileUtils {
-
-    static isWorkspaceEmpty() {
-
-        return FileUtils.isEmpty(FileUtils.getWorkspacePath());
-    }
-
-    static getWorkspacePath() {
-
-        return process.env["GITHUB_WORKSPACE"];
-    }
-
-    static exists(fileOrPath) {
-
-        return fs.existsSync(fileOrPath);
-    }
-
-    static isEmpty(path) {
-
-        if (!FileUtils.exists(path)) {
-            throw new Error(`${path} does not exist`);
-        }
-
-        return fs.readdirSync(path).length === 0;
-    }
-}
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (FileUtils);
-
-
-/***/ }),
-
 /***/ 491:
 /***/ ((module) => {
 
@@ -2103,6 +2060,18 @@ module.exports = require("util");
 /******/ 	}
 /******/ 	
 /************************************************************************/
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	(() => {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__nccwpck_require__.n = (module) => {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				() => (module['default']) :
+/******/ 				() => (module);
+/******/ 			__nccwpck_require__.d(getter, { a: getter });
+/******/ 			return getter;
+/******/ 		};
+/******/ 	})();
+/******/ 	
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
 /******/ 		// define getter functions for harmony exports
@@ -2137,19 +2106,60 @@ module.exports = require("util");
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
-// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
+// This entry need to be wrapped in an IIFE because it need to be in strict mode.
 (() => {
+"use strict";
+// ESM COMPAT FLAG
+__nccwpck_require__.r(__webpack_exports__);
+
+// EXTERNAL MODULE: external "fs"
+var external_fs_ = __nccwpck_require__(147);
+var external_fs_default = /*#__PURE__*/__nccwpck_require__.n(external_fs_);
+;// CONCATENATED MODULE: ./src/utils/file-utils.js
+
+// const path  = require("path");
+
+class FileUtils {
+
+    static isWorkspaceEmpty() {
+
+        return FileUtils.isEmpty(FileUtils.getWorkspacePath());
+    }
+
+    static getWorkspacePath() {
+
+        return process.env["GITHUB_WORKSPACE"];
+    }
+
+    static exists(fileOrPath) {
+
+        return external_fs_default().existsSync(fileOrPath);
+    }
+
+    static isEmpty(path) {
+
+        if (!FileUtils.exists(path)) {
+            throw new Error(`${path} does not exist`);
+        }
+
+        return external_fs_default().readdirSync(path).length === 0;
+    }
+}
+
+/* harmony default export */ const file_utils = (FileUtils);
+
+;// CONCATENATED MODULE: ./src/main.js
 const core = __nccwpck_require__(186);
 // const wait = require("./wait");
 
-const FileUtils = __nccwpck_require__(550);
+
 
 // most @actions toolkit packages have async methods
 async function run() {
 
     try {
 
-        if (FileUtils.isWorkspaceEmpty()) {
+        if (file_utils.isWorkspaceEmpty()) {
             throw new Error("Workspace is empty. Did you forget to run \"actions/checkout\" before running this Github Action?");
         }
 
