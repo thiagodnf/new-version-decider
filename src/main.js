@@ -43,6 +43,7 @@ async function run() {
             repo: repo,
         });
 
+
         releases = releases.data;
 
         let { id, currentRelease } = "";
