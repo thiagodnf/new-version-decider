@@ -4021,7 +4021,7 @@ const Octokit = core.Octokit.plugin(pluginRequestLog.requestLog, pluginRestEndpo
   userAgent: `octokit-rest.js/${VERSION}`
 });
 
-__webpack_unused_export__ = Octokit;
+exports.v = Octokit;
 //# sourceMappingURL=index.js.map
 
 
@@ -8814,7 +8814,7 @@ async function run() {
 
         const [owner, repo] = repository.split("/");
 
-        let releases = await dist_node["default"].repos.listReleases({
+        let releases = await dist_node/* Octokit.repos.listReleases */.v.repos.listReleases({
             owner: owner,
             repo: repo,
         });
