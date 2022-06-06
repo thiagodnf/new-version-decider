@@ -34,7 +34,7 @@ async function run() {
             core.setOutput("release", releases[0].tag_name);
         }
 
-        throw new Error("No valid releases");
+        throw new Error("No valid releases. Did you manually created a release on GitHub?");
 
     } catch (error) {
         core.setFailed(error.message);
