@@ -18,11 +18,9 @@ jobs:
         with:
           repository: thiagodonferreira/configuration-file-releaser
 
-
-
       - name: Create Release on Github
         uses: softprops/action-gh-release@v1
-        if: ${{steps.releaser.outputs.currentRelease}} !== ${{steps.releaser.outputs.nextRelease}}
+        if: ${{steps.releaser.outputs.currentRelease !== steps.releaser.outputs.nextRelease}}
         with:
           name: ${{ steps.releaser.outputs.nextRelease }}
           tag_name: v${{steps.releaser.outputs.nextRelease}}
