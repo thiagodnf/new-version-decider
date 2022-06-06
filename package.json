@@ -1,6 +1,6 @@
 {
     "name": "configuration-file-releaser",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "description": "A Github action for releasing a new version using configuration files from your project",
     "author": "Thiago do N. Ferreira",
     "license": "MIT",
