@@ -2142,7 +2142,7 @@ var __webpack_exports__ = {};
 const core = __nccwpck_require__(186);
 // const wait = require("./wait");
 
-const { FileUtils } = __nccwpck_require__(550);
+const FileUtils = __nccwpck_require__(550);
 
 // most @actions toolkit packages have async methods
 async function run() {

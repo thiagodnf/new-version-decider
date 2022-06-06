@@ -1,7 +1,7 @@
 const core = require("@actions/core");
 // const wait = require("./wait");
 
-const { FileUtils } = require("./utils/file-utils");
+const FileUtils = require("./utils/file-utils");
 
 // most @actions toolkit packages have async methods
 async function run() {
