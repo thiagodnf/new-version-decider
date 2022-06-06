@@ -8751,9 +8751,6 @@ const core = __nccwpck_require__(2186);
 const { Octokit } = __nccwpck_require__(5375);
 const { FileUtils } = __nccwpck_require__(550);
 
-// import FileUtils from "./utils/file-utils";
-// const FileUtils
-
 // most @actions toolkit packages have async methods
 async function run() {
 
@@ -8785,7 +8782,7 @@ async function run() {
         if (releases.length) {
             id = String(releases[0].id);
             currentRelease = releases[0].tag_name;
-            nextRelease = "0.0.1";
+            nextRelease = "0.0.2";
         } else {
             nextRelease = "0.0.1";
         }

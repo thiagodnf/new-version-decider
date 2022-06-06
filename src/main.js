@@ -2,9 +2,6 @@ const core = require("@actions/core");
 const { Octokit } = require("@octokit/rest");
 const { FileUtils } = require("./utils/file-utils");
 
-// import FileUtils from "./utils/file-utils";
-// const FileUtils
-
 // most @actions toolkit packages have async methods
 async function run() {
 
@@ -36,7 +33,7 @@ async function run() {
         if (releases.length) {
             id = String(releases[0].id);
             currentRelease = releases[0].tag_name;
-            nextRelease = "0.0.1";
+            nextRelease = "0.0.2";
         } else {
             nextRelease = "0.0.1";
         }

@@ -9,11 +9,21 @@ jobs:
   release:
     runs-on: ubuntu-latest
     steps:
-
       - name: Checking out
         uses: actions/checkout@v3
 
-      - name: Configuration File Releaser
+      - id: releaser
+        name: Configuration File Releaser
         uses: thiagodonferreira/configuration-file-releaser@main
         with:
           repository: thiagodonferreira/configuration-file-releaser
+
+      - name: Create Release on Github
+        uses: softprops/action-gh-release@v1
+        if: ${{steps.releaser.output.currentRelease}} !== ${{steps.releaser.output.nextRelease}}
+        with:
+          name: v${{ steps.releaser.output.nextRelease }}
+          tag_name: v${{steps.releaser.output.nextRelease}}
+          files: "*"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
