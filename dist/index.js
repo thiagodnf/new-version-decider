@@ -4005,10 +4005,9 @@ exports.request = request;
 /***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
 
 "use strict";
-var __webpack_unused_export__;
 
 
-__webpack_unused_export__ = ({ value: true });
+Object.defineProperty(exports, "__esModule", ({ value: true }));
 
 var core = __nccwpck_require__(6762);
 var pluginRequestLog = __nccwpck_require__(8883);
@@ -4021,7 +4020,7 @@ const Octokit = core.Octokit.plugin(pluginRequestLog.requestLog, pluginRestEndpo
   userAgent: `octokit-rest.js/${VERSION}`
 });
 
-exports.v = Octokit;
+exports.Octokit = Octokit;
 //# sourceMappingURL=index.js.map
 
 
@@ -8540,6 +8539,45 @@ function wrappy (fn, cb) {
 
 /***/ }),
 
+/***/ 550:
+/***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
+
+// import fs from "fs";
+const fs  = __nccwpck_require__(7147);
+// const path  = require("path");
+
+class FileUtils {
+
+    static isWorkspaceEmpty() {
+
+        return FileUtils.isEmpty(FileUtils.getWorkspacePath());
+    }
+
+    static getWorkspacePath() {
+
+        return process.env["GITHUB_WORKSPACE"];
+    }
+
+    static exists(fileOrPath) {
+
+        return fs.existsSync(fileOrPath);
+    }
+
+    static isEmpty(path) {
+
+        if (!FileUtils.exists(path)) {
+            throw new Error(`${path} does not exist`);
+        }
+
+        return fs.readdirSync(path).length === 0;
+    }
+}
+
+exports.FileUtils = FileUtils;
+
+
+/***/ }),
+
 /***/ 2877:
 /***/ ((module) => {
 
@@ -8701,110 +8739,29 @@ module.exports = JSON.parse('[[[0,44],"disallowed_STD3_valid"],[[45,46],"valid"]
 /******/ 	}
 /******/ 	
 /************************************************************************/
-/******/ 	/* webpack/runtime/compat get default export */
-/******/ 	(() => {
-/******/ 		// getDefaultExport function for compatibility with non-harmony modules
-/******/ 		__nccwpck_require__.n = (module) => {
-/******/ 			var getter = module && module.__esModule ?
-/******/ 				() => (module['default']) :
-/******/ 				() => (module);
-/******/ 			__nccwpck_require__.d(getter, { a: getter });
-/******/ 			return getter;
-/******/ 		};
-/******/ 	})();
-/******/ 	
-/******/ 	/* webpack/runtime/define property getters */
-/******/ 	(() => {
-/******/ 		// define getter functions for harmony exports
-/******/ 		__nccwpck_require__.d = (exports, definition) => {
-/******/ 			for(var key in definition) {
-/******/ 				if(__nccwpck_require__.o(definition, key) && !__nccwpck_require__.o(exports, key)) {
-/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
-/******/ 				}
-/******/ 			}
-/******/ 		};
-/******/ 	})();
-/******/ 	
-/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
-/******/ 	(() => {
-/******/ 		__nccwpck_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
-/******/ 	})();
-/******/ 	
-/******/ 	/* webpack/runtime/make namespace object */
-/******/ 	(() => {
-/******/ 		// define __esModule on exports
-/******/ 		__nccwpck_require__.r = (exports) => {
-/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
-/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
-/******/ 			}
-/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
-/******/ 		};
-/******/ 	})();
-/******/ 	
 /******/ 	/* webpack/runtime/compat */
 /******/ 	
 /******/ 	if (typeof __nccwpck_require__ !== 'undefined') __nccwpck_require__.ab = __dirname + "/";
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
-// This entry need to be wrapped in an IIFE because it need to be in strict mode.
+// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
 (() => {
-"use strict";
-// ESM COMPAT FLAG
-__nccwpck_require__.r(__webpack_exports__);
-
-// EXTERNAL MODULE: ./node_modules/@octokit/rest/dist-node/index.js
-var dist_node = __nccwpck_require__(5375);
-// EXTERNAL MODULE: external "fs"
-var external_fs_ = __nccwpck_require__(7147);
-var external_fs_default = /*#__PURE__*/__nccwpck_require__.n(external_fs_);
-;// CONCATENATED MODULE: ./src/utils/file-utils.js
-
-// const path  = require("path");
-
-class FileUtils {
-
-    static isWorkspaceEmpty() {
-
-        return FileUtils.isEmpty(FileUtils.getWorkspacePath());
-    }
-
-    static getWorkspacePath() {
-
-        return process.env["GITHUB_WORKSPACE"];
-    }
-
-    static exists(fileOrPath) {
-
-        return external_fs_default().existsSync(fileOrPath);
-    }
-
-    static isEmpty(path) {
-
-        if (!FileUtils.exists(path)) {
-            throw new Error(`${path} does not exist`);
-        }
-
-        return external_fs_default().readdirSync(path).length === 0;
-    }
-}
-
-/* harmony default export */ const file_utils = (FileUtils);
-
-;// CONCATENATED MODULE: ./src/main.js
 const core = __nccwpck_require__(2186);
+const { Octokit } = __nccwpck_require__(5375);
+const { FileUtils } = __nccwpck_require__(550);
 
-
-
+// import FileUtils from "./utils/file-utils";
+// const FileUtils
 
 // most @actions toolkit packages have async methods
 async function run() {
 
-    const octokit = new dist_node/* Octokit */.v();
+    const octokit = new Octokit();
 
     try {
 
-        if (file_utils.isWorkspaceEmpty()) {
+        if (FileUtils.isWorkspaceEmpty()) {
             throw new Error("Workspace is empty. Did you forget to run \"actions/checkout\" before running this Github Action?");
         }
 
@@ -8823,12 +8780,24 @@ async function run() {
 
         releases = releases.data;
 
+        let { id, currentRelease, nextRelease } = "";
+
         if (releases.length) {
-            core.setOutput("id", String(releases[0].id));
-            core.setOutput("release", releases[0].tag_name);
+            id = String(releases[0].id);
+            currentRelease = releases[0].tag_name;
+            nextRelease = "0.0.1";
+        } else {
+            nextRelease = "0.0.1";
         }
 
-        throw new Error("No valid releases. Did you manually created a release on GitHub?");
+
+        core.info(id);
+        core.info(currentRelease);
+        core.info(nextRelease);
+
+        core.setOutput("id", id);
+        core.setOutput("currentRelease", currentRelease);
+        core.setOutput("nextRelease", nextRelease);
 
     } catch (error) {
         core.setFailed(error.message);
