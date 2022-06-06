@@ -1,5 +1,5 @@
-name: 'Wait'
-description: 'Wait a designated number of milliseconds'
+name: 'configuration-file-releaser'
+description: 'A Github action for releasing a new version using configuration files from your project'
 inputs:
   milliseconds:  # id of input
     description: 'number of milliseconds to wait'

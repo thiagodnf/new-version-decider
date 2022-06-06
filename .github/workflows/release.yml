@@ -1,0 +1,15 @@
+name: "release"
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+
+      # - uses: actions/checkout@v3
+
+      - uses: thiagodonferreira/configuration-file-releaser@main
