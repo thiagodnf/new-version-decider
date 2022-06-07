@@ -15918,6 +15918,7 @@ async function run() {
         core.setOutput("id", id);
         core.setOutput("currentRelease", currentRelease);
         core.setOutput("nextRelease", nextRelease);
+        core.setOutput("shouldGenerateNewRelease", currentRelease !== nextRelease);
 
     } catch (error) {
         core.setFailed(error.message);

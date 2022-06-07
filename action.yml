@@ -20,6 +20,8 @@ outputs:
     description: Latest release name
   nextRelease:
     description: Next release name
+  shouldGenerateNewRelease:
+    description: True if you need to generate a new version
 runs:
   using: "node16"
   main: "dist/index.js"
