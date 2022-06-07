@@ -19,6 +19,10 @@ async function run() {
         const { id, latestRelease } = await GitHubApiUtils.getLatestRelease();
         const currentVersion = await LoaderUtils.getCurrentVersion(loader, configurationFile);
 
+        core.info("id: " + id);
+        core.info("latestRelease: " + latestRelease);
+        core.info("currentVersion: " + currentVersion);
+
         core.setOutput("id", id);
         core.setOutput("latestRelease", latestRelease);
         core.setOutput("currentVersion", currentVersion);
