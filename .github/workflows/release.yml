@@ -23,8 +23,8 @@ jobs:
         uses: softprops/action-gh-release@v1
         if: ${{steps.releaser.outputs.shouldGenerateANewVersion == 'true' }}
         with:
-          name: ${{ steps.releaser.outputs.nextRelease }}
-          tag_name: v${{steps.releaser.outputs.nextRelease}}
+          name: ${{ steps.releaser.outputs.currentVersion }}
+          tag_name: v${{steps.releaser.outputs.currentVersion}}
           # files: "*"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
