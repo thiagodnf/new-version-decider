@@ -1,5 +1,4 @@
 const core = require("@actions/core");
-const path = require("path");
 const { Octokit } = require("@octokit/rest");
 const { FileUtils } = require("./utils/file-utils");
 
@@ -37,8 +36,6 @@ async function run() {
         if (!loaders[loader]) {
             throw new Error("The 'loader' parameter is not valid");
         }
-
-        core.info(path.join(FileUtils.getWorkspacePath(), configurationFile));
 
         loader = loaders[loader];
 
