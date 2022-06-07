@@ -15,7 +15,7 @@ async function run() {
         "java-maven": new JavaMavenLoader()
     };
 
-    core.info(JSON.stringify(process.env));
+    core.info(process.env["GITHUB_REPOSITORY"]);
 
     try {
 
