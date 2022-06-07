@@ -4,7 +4,7 @@ class NodeJSLoader {
 
     getCurrentVersion(file) {
 
-        file = file || "package.json";
+        file = file || "./package.json";
 
         const content = FileUtils.getContent(file);
 

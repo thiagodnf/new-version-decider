@@ -18,11 +18,7 @@ jobs:
         with:
           repository: thiagodonferreira/configuration-file-releaser
           loader: nodejs
-          configurationFile: package.json
-
-      - run: echo ${{steps.releaser.outputs.currentRelease}}
-
-      - run: echo ${{steps.releaser.outputs.nextRelease}}
+          configurationFile: ./package.json
 
       - name: Create Release on Github
         uses: softprops/action-gh-release@v1

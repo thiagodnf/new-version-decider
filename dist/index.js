@@ -15606,7 +15606,7 @@ class NodeJSLoader {
 
     getCurrentVersion(file) {
 
-        file = file || "package.json";
+        file = file || "./package.json";
 
         const content = FileUtils.getContent(file);
 
@@ -15857,7 +15857,6 @@ var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
 (() => {
 const core = __nccwpck_require__(2186);
-const path = __nccwpck_require__(1017);
 const { Octokit } = __nccwpck_require__(5375);
 const { FileUtils } = __nccwpck_require__(550);
 
@@ -15895,8 +15894,6 @@ async function run() {
         if (!loaders[loader]) {
             throw new Error("The 'loader' parameter is not valid");
         }
-
-        core.info(path.join(FileUtils.getWorkspacePath(), configurationFile));
 
         loader = loaders[loader];
 
