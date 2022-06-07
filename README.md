@@ -53,7 +53,7 @@ True if you need to generate a new version
 If you run this GitHub Actions, this is what the log information looks like:
 
 ```bash
-Run Run thiagodonferreira/new-version-decider@main
+Run thiagodonferreira/new-version-decider@main
 id: 68836407
 latestRelease: 0.0.6
 currentVersion: 0.0.6
