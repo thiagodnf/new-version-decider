@@ -14,7 +14,7 @@ jobs:
 
       - id: releaser
         name: Configuration File Releaser
-        uses: thiagodonferreira/configuration-file-releaser@main
+        uses: thiagodonferreira/new-version-decider@main
         with:
           loader: nodejs
           configurationFile: ./package.json
