@@ -15955,6 +15955,7 @@ async function run() {
         core.setOutput("nextRelease", nextRelease);
         core.setOutput("shouldGenerateANewVersion", currentRelease !== nextRelease);
 
+        core.info("shouldGenerateANewVersion: "+(currentRelease !== nextRelease));
     } catch (error) {
         core.setFailed(error.message);
     }
