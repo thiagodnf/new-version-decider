@@ -15969,6 +15969,7 @@ async function run() {
         core.info("id: " + id);
         core.info("latestRelease: " + latestRelease);
         core.info("currentVersion: " + currentVersion);
+        core.info("shouldGenerateANewVersion: " + (latestRelease !== currentVersion));
 
         core.setOutput("id", id);
         core.setOutput("latestRelease", latestRelease);
