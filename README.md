@@ -48,6 +48,15 @@ Next release name
 
 True if you need to generate a new version
 
+## Loaders
+
+This action supports the following loaders:
+
+| Loader | Default Configuration File | 
+|----|----|
+|nodejs | package.json |
+|java-maven | pom.xml |
+
 ## Log
 
 If you run this GitHub Actions, this is what the log information looks like:
