@@ -19,7 +19,8 @@
     "keywords": [
         "GitHub",
         "Actions",
-        "JavaScript"
+        "JavaScript",
+        "release"
     ],
     "engines": {
         "node": ">=16.14.0"
