@@ -20,7 +20,7 @@ outputs:
     description: Latest release name
   nextRelease:
     description: Next release name
-  shouldGenerateNewRelease:
+  shouldGenerateANewVersion:
     description: True if you need to generate a new version
 runs:
   using: "node16"

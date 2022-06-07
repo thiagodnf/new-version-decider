@@ -22,7 +22,7 @@ jobs:
 
       - name: Create Release on Github
         uses: softprops/action-gh-release@v1
-        if: ${{steps.releaser.outputs.shouldGenerateNewRelease }}
+        if: ${{steps.releaser.outputs.shouldGenerateANewVersion }}
         with:
           name: ${{ steps.releaser.outputs.nextRelease }}
           tag_name: v${{steps.releaser.outputs.nextRelease}}
