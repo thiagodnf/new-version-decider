@@ -19,11 +19,9 @@ jobs:
           loader: nodejs
           configurationFile: ./package.json
 
-      - run: node --print 'process.env'
-
       - name: Create Release on Github
         uses: softprops/action-gh-release@v1
-        if: ${{steps.releaser.outputs.shouldGenerateANewVersion == true }}
+        if: ${{steps.releaser.outputs.shouldGenerateANewVersion == "true" }}
         with:
           name: ${{ steps.releaser.outputs.nextRelease }}
           tag_name: v${{steps.releaser.outputs.nextRelease}}
