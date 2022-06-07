@@ -15704,7 +15704,7 @@ class GitHubApiUtils {
 
         const octokit = new Octokit();
 
-        const repoInfo = GitHubApiUtils.getRepository();
+        const repoInfo = await GitHubApiUtils.getRepository();
 
         let releases = await octokit.rest.repos.listReleases(repoInfo);
 
@@ -15946,7 +15946,7 @@ async function run() {
 
         loader = loaders[loader];
 
-        let { id, currentRelease } = GitHubApiUtils.getLatestRelease();
+        let { id, currentRelease } = await GitHubApiUtils.getLatestRelease();
 
         const nextRelease = await loader.getCurrentVersion(configurationFile);
 

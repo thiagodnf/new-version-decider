@@ -33,7 +33,7 @@ async function run() {
 
         loader = loaders[loader];
 
-        let { id, currentRelease } = GitHubApiUtils.getLatestRelease();
+        let { id, currentRelease } = await GitHubApiUtils.getLatestRelease();
 
         const nextRelease = await loader.getCurrentVersion(configurationFile);
 

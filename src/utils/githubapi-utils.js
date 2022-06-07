@@ -28,7 +28,7 @@ class GitHubApiUtils {
 
         const octokit = new Octokit();
 
-        const repoInfo = GitHubApiUtils.getRepository();
+        const repoInfo = await GitHubApiUtils.getRepository();
 
         let releases = await octokit.rest.repos.listReleases(repoInfo);
 
