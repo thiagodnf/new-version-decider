@@ -1,5 +1,5 @@
 name: configuration-file-releaser
-description: A Github action for releasing a new version using configuration files from your project
+description: A Github action for deciding if a new version should be generated using configuration files from your project
 branding:
   icon: anchor
   color: orange

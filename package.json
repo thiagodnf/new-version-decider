@@ -1,7 +1,7 @@
 {
     "name": "configuration-file-releaser",
     "version": "0.0.4",
-    "description": "A Github action for releasing a new version using configuration files from your project",
+    "description": "A Github action for deciding if a new version should be generated using configuration files from your project",
     "author": "Thiago do N. Ferreira",
     "license": "MIT",
     "main": "src/main.js",
