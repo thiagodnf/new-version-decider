@@ -16,7 +16,6 @@ jobs:
         name: Configuration File Releaser
         uses: thiagodonferreira/configuration-file-releaser@main
         with:
-          repository: thiagodonferreira/configuration-file-releaser
           loader: nodejs
           configurationFile: ./package.json
 
