@@ -1,5 +1,5 @@
-const { NodeJSLoader } = require("./loader/nodejs-loader");
-const { JavaMavenLoader } = require("./loader/java-maven-loader");
+const { NodeJSLoader } = require("../loader/nodejs-loader");
+const { JavaMavenLoader } = require("../loader/java-maven-loader");
 
 class LoaderUtils {
 
