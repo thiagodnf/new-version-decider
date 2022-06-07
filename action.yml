@@ -4,6 +4,9 @@ branding:
   icon: anchor
   color: orange
 inputs:
+  test:
+    description: The repository name in full
+    required: false
   repository:
     description: The repository name in full
     required: true

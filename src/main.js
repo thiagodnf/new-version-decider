@@ -15,6 +15,8 @@ async function run() {
         "java-maven": new JavaMavenLoader()
     };
 
+    core.info(JSON.stringify(process.env));
+
     try {
 
         if (FileUtils.isWorkspaceEmpty()) {
