@@ -15671,6 +15671,61 @@ exports.FileUtils = FileUtils;
 
 /***/ }),
 
+/***/ 7933:
+/***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
+
+const { Octokit } = __nccwpck_require__(5375);
+
+class GitHubApiUtils {
+
+    static async isValidRepository(str) {
+
+        if (!str) {
+            throw new Error("Repository should not be null or underfined");
+        }
+
+        return /(.+)\/(.+)/gm.test(str);
+    }
+
+    static async getRepository() {
+
+        const repository = process.env["GITHUB_REPOSITORY"];
+
+        if (!GitHubApiUtils.isValidRepository(repository)) {
+            throw new Error(`${repository} is invalid`);
+        }
+
+        const [owner, repo] = repository.split("/");
+
+        return { owner, repo };
+    }
+
+    static async getLatestRelease() {
+
+        const octokit = new Octokit();
+
+        const repoInfo = GitHubApiUtils.getRepository();
+
+        let releases = await octokit.rest.repos.listReleases(repoInfo);
+
+        releases = releases.data;
+
+        let { id, currentRelease } = "";
+
+        if (releases.length) {
+            id = String(releases[0].id);
+            currentRelease = releases[0].name;
+        }
+
+        return { id, currentRelease };
+    }
+}
+
+exports.GitHubApiUtils = GitHubApiUtils;
+
+
+/***/ }),
+
 /***/ 2877:
 /***/ ((module) => {
 
@@ -15857,23 +15912,20 @@ var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
 (() => {
 const core = __nccwpck_require__(2186);
-const { Octokit } = __nccwpck_require__(5375);
-const { FileUtils } = __nccwpck_require__(550);
 
 const { NodeJSLoader } = __nccwpck_require__(3869);
 const { JavaMavenLoader } = __nccwpck_require__(9248);
 
+const { GitHubApiUtils } = __nccwpck_require__(7933);
+const { FileUtils } = __nccwpck_require__(550);
+
 // most @actions toolkit packages have async methods
 async function run() {
-
-    const octokit = new Octokit();
 
     const loaders = {
         "nodejs": new NodeJSLoader(),
         "java-maven": new JavaMavenLoader()
     };
-
-    core.info(process.env["GITHUB_REPOSITORY"]);
 
     try {
 
@@ -15881,13 +15933,8 @@ async function run() {
             throw new Error("Workspace is empty. Did you forget to run \"actions/checkout\" before running this Github Action?");
         }
 
-        let repository = core.getInput("repository");
         let loader = core.getInput("loader");
         let configurationFile = core.getInput("configurationFile");
-
-        if (!repository) {
-            throw new Error("The 'repository' parameter should not be blank");
-        }
 
         if (!loader) {
             throw new Error("The 'loader' parameter should not be blank");
@@ -15899,23 +15946,9 @@ async function run() {
 
         loader = loaders[loader];
 
-        const [owner, repo] = repository.split("/");
-
-        let releases = await octokit.rest.repos.listReleases({
-            owner: owner,
-            repo: repo,
-        });
-
-        releases = releases.data;
-
-        let { id, currentRelease } = "";
+        let { id, currentRelease } = GitHubApiUtils.getLatestRelease();
 
         const nextRelease = await loader.getCurrentVersion(configurationFile);
-
-        if (releases.length) {
-            id = String(releases[0].id);
-            currentRelease = releases[0].name;
-        }
 
         core.setOutput("id", id);
         core.setOutput("currentRelease", currentRelease);
