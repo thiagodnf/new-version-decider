@@ -13,9 +13,9 @@ inputs:
 outputs:
   id:
     description: Latest release ID
-  currentRelease:
+  latestRelease:
     description: Latest release name
-  nextRelease:
+  currentVersion:
     description: Next release name
   shouldGenerateANewVersion:
     description: True if you need to generate a new version

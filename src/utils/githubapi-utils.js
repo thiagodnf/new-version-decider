@@ -34,14 +34,14 @@ class GitHubApiUtils {
 
         releases = releases.data;
 
-        let { id, currentRelease } = "";
+        let { id, latestRelease } = "";
 
         if (releases.length) {
             id = String(releases[0].id);
-            currentRelease = releases[0].name;
+            latestRelease = releases[0].name;
         }
 
-        return { id, currentRelease };
+        return { id, latestRelease };
     }
 }
 
