@@ -15873,6 +15873,8 @@ async function run() {
         "java-maven": new JavaMavenLoader()
     };
 
+    core.info(process.env["GITHUB_REPOSITORY"]);
+
     try {
 
         if (FileUtils.isWorkspaceEmpty()) {
