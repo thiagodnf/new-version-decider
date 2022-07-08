@@ -19,7 +19,7 @@ import path from "path";
 test("test runs", () => {
 
     process.env["GITHUB_WORKSPACE"] = "./";
-    process.env["INPUT_REPOSITORY"] = "thiagodonferreira/configuration-file-releaser";
+    process.env["INPUT_REPOSITORY"] = "thiagodnf/configuration-file-releaser";
     process.env["INPUT_LOADER"] = "java-maven";
 
     const ip = path.join(__dirname, "../src/main.js");
