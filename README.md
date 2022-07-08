@@ -1,4 +1,4 @@
-![logo](https://user-images.githubusercontent.com/98138701/172487715-e5295204-778c-4253-8553-7ba1fa3cb147.png)
+<img src="https://user-images.githubusercontent.com/98138701/172487715-e5295204-778c-4253-8553-7ba1fa3cb147.png" width="550px" />
 
 A Github action for deciding if a new version should be generated using configuration files from your project
 
