@@ -15969,12 +15969,12 @@ async function run() {
         core.info("id: " + id);
         core.info("latestRelease: " + latestRelease);
         core.info("currentVersion: " + currentVersion);
-        core.info("shouldGenerateANewVersion: " + (latestRelease !== currentVersion));
+        core.info("newVersion: " + (latestRelease !== currentVersion));
 
         core.setOutput("id", id);
         core.setOutput("latestRelease", latestRelease);
         core.setOutput("currentVersion", currentVersion);
-        core.setOutput("shouldGenerateANewVersion", latestRelease !== currentVersion);
+        core.setOutput("newVersion", latestRelease !== currentVersion);
 
     } catch (error) {
         core.setFailed(error.message);
