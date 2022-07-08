@@ -20,6 +20,17 @@ with:
   configurationFile: ./package.json
 ```
 
+```yaml
+- name: Create Release on Github
+    uses: softprops/action-gh-release@v1
+    if: ${{steps.releaser.outputs.newVersion == 'true' }}
+    with:
+        name: ${{ steps.releaser.outputs.currentVersion }}
+        tag_name: v${{steps.releaser.outputs.currentVersion}}
+    env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+```
+
 ## Input
 
 ### `loader`
@@ -52,7 +63,7 @@ True if you need to generate a new version
 
 This action supports the following loaders:
 
-| Loader | Default Configuration File | 
+| Loader | Default Configuration File |
 |----|----|
 |nodejs | package.json |
 |java-maven | pom.xml |
