@@ -14,21 +14,21 @@ A Github action for deciding if a new version should be generated using configur
 You can now consume the action by referencing the available version.
 
 ```yaml
-uses: thiagodnf/new-version-decider@v0.0.8
-with:
-  loader: nodejs
-  configurationFile: ./package.json
+- uses: thiagodnf/new-version-decider@v0.0.8
+  with:
+    loader: nodejs
+    configurationFile: ./package.json
 ```
 
 ```yaml
 - name: Create Release on Github
-    uses: softprops/action-gh-release@v1
-    if: ${{steps.releaser.outputs.newVersion == 'true' }}
-    with:
-        name: ${{ steps.releaser.outputs.currentVersion }}
-        tag_name: v${{steps.releaser.outputs.currentVersion}}
-    env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  uses: softprops/action-gh-release@v1
+  if: ${{steps.releaser.outputs.newVersion == 'true' }}
+  with:
+    name: ${{ steps.releaser.outputs.currentVersion }}
+      tag_name: v${{steps.releaser.outputs.currentVersion}}
+  env:
+    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
 
 ## Input
