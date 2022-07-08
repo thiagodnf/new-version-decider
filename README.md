@@ -2,10 +2,10 @@
 
 A Github action for deciding if a new version should be generated using configuration files from your project
 
-[![Build](https://github.com/thiagodonferreira/new-version-decider/actions/workflows/release.yml/badge.svg)](https://github.com/thiagodonferreira/new-version-decider/actions/workflows/build.yml)
-[![GitHub Release](https://img.shields.io/github/release/thiagodonferreira/new-version-decider.svg)](https://github.com/thiagodonferreira/new-version-decider/releases/latest)
-[![GitHub contributors](https://img.shields.io/github/contributors/thiagodonferreira/new-version-decider.svg)](https://github.com/thiagodonferreira/new-version-decider/graphs/contributors)
-[![GitHub stars](https://img.shields.io/github/stars/thiagodonferreira/new-version-decider.svg)](https://github.com/thiagodonferreira/new-version-decider)
+[![Build](https://github.com/thiagodnf/new-version-decider/actions/workflows/release.yml/badge.svg)](https://github.com/thiagodnf/new-version-decider/actions/workflows/build.yml)
+[![GitHub Release](https://img.shields.io/github/release/thiagodnf/new-version-decider.svg)](https://github.com/thiagodnf/new-version-decider/releases/latest)
+[![GitHub contributors](https://img.shields.io/github/contributors/thiagodnf/new-version-decider.svg)](https://github.com/thiagodnf/new-version-decider/graphs/contributors)
+[![GitHub stars](https://img.shields.io/github/stars/thiagodnf/new-version-decider.svg)](https://github.com/thiagodnf/new-version-decider)
 [![MIT Licence](https://badges.frapsoft.com/os/mit/mit.svg?v=103)](https://opensource.org/licenses/mit-license.php)
 [![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges/)
 
@@ -14,7 +14,7 @@ A Github action for deciding if a new version should be generated using configur
 You can now consume the action by referencing the available version.
 
 ```yaml
-uses: thiagodonferreira/new-version-decider@v0.0.8
+uses: thiagodnf/new-version-decider@v0.0.8
 with:
   loader: nodejs
   configurationFile: ./package.json
@@ -62,7 +62,7 @@ This action supports the following loaders:
 If you run this GitHub Actions, this is what the log information looks like:
 
 ```bash
-Run thiagodonferreira/new-version-decider@main
+Run thiagodnf/new-version-decider@main
 id: 68836407
 latestRelease: 0.0.6
 currentVersion: 0.0.6
