@@ -1,7 +1,5 @@
 const { Octokit } = require("@octokit/rest");
 
-const core = require("@actions/core");
-
 class GitHubApiUtils {
 
     static async isValidRepository(str) {

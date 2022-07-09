@@ -12,12 +12,12 @@ jobs:
       - name: Checking out
         uses: actions/checkout@v3
 
-      - id: releaser
-        name: New Version Decider
-        uses: thiagodnf/new-version-decider@main
-        with:
-          loader: nodejs
-          configurationFile: ./package.json
+      # - id: releaser
+      #   name: New Version Decider
+      #   uses: thiagodnf/new-version-decider@main
+      #   with:
+      #     loader: nodejs
+      #     configurationFile: ./package.json
 
       # - name: Create Release on Github
       #   uses: softprops/action-gh-release@v1

@@ -15676,8 +15676,6 @@ exports.FileUtils = FileUtils;
 
 const { Octokit } = __nccwpck_require__(5375);
 
-const core = __nccwpck_require__(2186);
-
 class GitHubApiUtils {
 
     static async isValidRepository(str) {
@@ -15712,8 +15710,6 @@ class GitHubApiUtils {
         const octokit = new Octokit();
 
         const repoInfo = await GitHubApiUtils.getRepository();
-
-        core.debug("Processing: ", JSON.stringify(repoInfo));
 
         let releases = await octokit.rest.repos.listReleases(repoInfo);
 
