@@ -19,8 +19,8 @@ import path from "path";
 test("test runs", () => {
 
     process.env["GITHUB_WORKSPACE"] = "./";
-    process.env["INPUT_REPOSITORY"] = "thiagodnf/new-version-decider";
-    process.env["INPUT_LOADER"] = "java-maven";
+    process.env["GITHUB_REPOSITORY"] = "thiagodnf/new-version-decider";
+    process.env["INPUT_LOADER"] = "nodejs";
 
     const ip = path.join(__dirname, "../src/main.js");
 
