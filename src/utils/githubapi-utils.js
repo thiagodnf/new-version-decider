@@ -37,8 +37,6 @@ class GitHubApiUtils {
 
         const repoInfo = await GitHubApiUtils.getRepository();
 
-        core.debug("Processing: ", JSON.stringify(repoInfo));
-
         let releases = await octokit.rest.repos.listReleases(repoInfo);
 
         releases = releases.data;
