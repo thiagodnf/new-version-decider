@@ -28,3 +28,10 @@ jobs:
           # files: "*"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          
+      - uses: ncipollo/release-action@v1
+        if: ${{steps.releaser.outputs.newVersion == 'true' }}
+        with:
+          artifacts: "*"
+          bodyFile: "README.md"
+          token: ${{ secrets.GITHUB_TOKEN }}
