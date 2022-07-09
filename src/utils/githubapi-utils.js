@@ -23,7 +23,12 @@ class GitHubApiUtils {
 
         const [owner, repo] = repository.split("/");
 
-        return { owner, repo };
+        let headers = {
+            accept: "application/vnd.github.v3+json",
+            authorization: `token ${process.env["GITHUB_TOKEN"]}`
+        };
+
+        return { owner, repo, headers };
     }
 
     static async getLatestRelease() {
