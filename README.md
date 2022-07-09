@@ -79,7 +79,7 @@ Run thiagodnf/new-version-decider@main
 id: 68836407
 latestRelease: 0.0.6
 currentVersion: 0.0.6
-shouldGenerateANewVersion: false
+newVersion: false
 ```
 
 ## For Developers
