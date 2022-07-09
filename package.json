@@ -1,6 +1,6 @@
 {
     "name": "new-version-decider",
-    "version": "0.0.2",
+    "version": "0.0.4",
     "description": "A Github action for deciding if a new version should be generated using configuration files from your project",
     "author": "Thiago Ferreira",
     "license": "MIT",
