@@ -14,7 +14,7 @@ A Github action for deciding if a new version should be generated using configur
 You can now consume the action by referencing the available version.
 
 ```yaml
-- uses: thiagodnf/new-version-decider@v0.0.3
+- uses: thiagodnf/new-version-decider@v0.0.5
   with:
     loader: nodejs
     configurationFile: ./package.json
