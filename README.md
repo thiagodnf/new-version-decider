@@ -57,7 +57,7 @@ Latest release name
 
 Next release name
 
-### `shouldGenerateANewVersion`
+### `newVersion`
 
 True if you need to generate a new version
 
