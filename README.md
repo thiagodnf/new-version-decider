@@ -14,13 +14,18 @@ A Github action for deciding if a new version should be generated using configur
 You can now consume the action by referencing the available version.
 
 ```yaml
-- uses: thiagodnf/new-version-decider@v0.0.5
+
+- id: releaser
+  name: New Version Decider
+  uses: thiagodnf/new-version-decider@v0.0.5
   with:
     loader: nodejs
     configurationFile: ./package.json
   env:
     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
+
+Now you can use the output to run the next actions such as:
 
 ```yaml
 - name: Create Release on Github
