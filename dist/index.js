@@ -15959,8 +15959,6 @@ const { LoaderUtils } = __nccwpck_require__(8073);
 // most @actions toolkit packages have async methods
 async function run() {
 
-
-    core.info(JSON.stringify(process.env));
     try {
 
         if (FileUtils.isWorkspaceEmpty()) {
