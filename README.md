@@ -30,7 +30,7 @@ Now you can use the output to run the next actions such as:
 ```yaml
 - name: Create Release on Github
   uses: softprops/action-gh-release@v1
-  if: ${{steps.releaser.outputs.newVersion == 'true' }}
+  if: steps.releaser.outputs.newVersion == 'true'
   with:
     name: ${{ steps.releaser.outputs.currentVersion }}
       tag_name: v${{steps.releaser.outputs.currentVersion}}
