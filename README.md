@@ -33,7 +33,7 @@ Now you can use the output to run the next actions such as:
   if: steps.releaser.outputs.newVersion == 'true'
   with:
     name: ${{ steps.releaser.outputs.currentVersion }}
-      tag_name: v${{steps.releaser.outputs.currentVersion}}
+    tag_name: v${{steps.releaser.outputs.currentVersion}}
   env:
     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
